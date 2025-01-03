@@ -71,7 +71,8 @@ def parse_debt_data(html_file_path):
 
     for tr in tbody.find_all('tr', recursive=False):
         # Skip totals row
-        if 'totalsRow' in tr.get('class', []):
+        classes = tr.get('class', [])
+        if any('totalsRow' in cls for cls in classes):
             continue
 
         cells = tr.find_all('td')
