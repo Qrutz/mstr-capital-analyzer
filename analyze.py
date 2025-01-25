@@ -25,9 +25,9 @@ def main():
     print(f"Number of Bond Issues: {debt_metrics['num_bonds']}")
     print(f"Maturity Range: {debt_metrics['nearest_maturity'].strftime('%Y-%m-%d')} to {debt_metrics['furthest_maturity'].strftime('%Y-%m-%d')}")
 
-    # Approximate current data (would parse from HTML in production)
-    btc_holdings = 447_470  # Approximate as of recent filings
-    btc_price = 100_000  # Current price
+    # Default parameters (update these based on latest data)
+    btc_holdings = 447_470  # Update from latest MSTR filings
+    btc_price = 100_000  # Update to current BTC price
     total_debt = debt_metrics['total_notional']
     annual_interest = total_debt * (debt_metrics['weighted_avg_coupon'] / 100)
 
