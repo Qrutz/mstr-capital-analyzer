@@ -46,7 +46,7 @@ st.markdown("""
 @st.cache_data
 def load_debt_data():
     """Load and cache debt data."""
-    df = parse_debt_data('../data/raw/DEBT/data.html')
+    df = parse_debt_data('data/raw/DEBT/data.html')
     metrics = calculate_debt_metrics(df)
     return df, metrics
 

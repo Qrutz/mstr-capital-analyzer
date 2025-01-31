@@ -21,7 +21,7 @@ st.set_page_config(
 
 @st.cache_data
 def load_data():
-    debt_df = parse_debt_data('../data/raw/DEBT/data.html')
+    debt_df = parse_debt_data('data/raw/DEBT/data.html')
     return debt_df
 
 
