@@ -77,9 +77,19 @@ class MaturityAnalyzer:
         """
         schedule = self.get_maturity_schedule()
 
+        # Merge with original debt_df to get conversion prices
+        schedule = schedule.merge(
+            self.debt_df[['Name', 'Conversion Price']],
+            on='Name',
+            how='left'
+        )
+
         # Calculate if bonds will be in the money (ITM) to convert
+        # Bond converts if current stock price > conversion price
+        # For simplicity, assume MSTR stock moves with BTC
         schedule['In the Money'] = (
-            self.debt_df['Ref Price'] < btc_price_at_maturity
+            schedule['Conversion Price'].notna() &
+            (btc_price_at_maturity > 50000)  # Simplified assumption
         )
 
         # If ITM, likely converts to equity (good - no cash needed)
