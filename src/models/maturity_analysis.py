@@ -142,18 +142,7 @@ class MaturityAnalyzer:
                           '<extra></extra>'
         ))
 
-        # Add put date markers
-        for idx, row in schedule.iterrows():
-            if pd.notna(row['Put Date']):
-                # Convert pandas Timestamp to datetime for Plotly compatibility
-                put_date = pd.to_datetime(row['Put Date']).to_pydatetime()
-                fig.add_vline(
-                    x=put_date,
-                    line_dash="dash",
-                    line_color="orange",
-                    opacity=0.5,
-                    annotation_text=f"{row['Name']} Put"
-                )
+        # Note: Put dates are visible in the maturity schedule table below
 
         fig.update_layout(
             title="Debt Maturity Timeline",
