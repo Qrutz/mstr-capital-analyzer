@@ -35,11 +35,13 @@ class MaturityAnalyzer:
         """
         schedule = self.debt_df[['Name', 'Maturity', 'Notional ($M)', 'Coupon', 'Put Date']].copy()
         schedule['Put Date'] = pd.to_datetime(schedule['Put Date'])
+
+        now = pd.Timestamp.now()
         schedule['Years to Maturity'] = (
-            (schedule['Maturity'] - datetime.now()).dt.days / 365.25
+            (schedule['Maturity'] - now).dt.days / 365.25
         ).round(2)
         schedule['Years to Put'] = (
-            (schedule['Put Date'] - datetime.now()).dt.days / 365.25
+            (schedule['Put Date'] - now).dt.days / 365.25
         ).round(2)
 
         return schedule
